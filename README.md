@@ -1,6 +1,10 @@
 # Computed Tomography Reconstruction: Traditional and Deep Learning Methods
 
-This project explores the field of **inverse problems**, a class of mathematical challenges where the goal is to determine the underlying cause of observed effects. These problems are often **ill-posed**, meaning that their solutions may be non-unique, unstable, or sensitive to noise.
+This project explores the field of **inverse problems**, a class of mathematical challenges where the goal is to determine the underlying cause of observed effects, applied to the field of computed tomography (CT). Inverse problems are often **ill-posed**, making direct solutions infeasible and motivates the use of robust reconstruction techniques illustrated in this work. You can read the full report for this work [here](https://github.com/imanfs/inverse-problems-CT-scans/blob/master/report.pdf).
+
+In the context of CT, the inverse problem involves reconstructing the true 2D or 3D image of an object (left) from its projections, which are collected as the object is scanned from multiple angles. These projections can be visualised as **sinograms** (right):
+
+<img src="figs/1a.png" alt="True underlying CT image" width="300">  <img src="figs/1b.png" alt="Observed sinogram" width="250">
 
 Mathematically, this can be expressed as:
 
@@ -12,16 +16,9 @@ where:
 - $g$ is the observed data (e.g., sinograms in CT),
 - $n$ represents noise introduced during the scanning process.
 
-The challenge arises from the ill-posed nature of the problem, making direct solutions infeasible and motivates the use of robust reconstruction techniques illustrated in this work.
-
-In the context of computed tomography (CT), the inverse problem involves reconstructing a 2D or 3D image of an object from its projections, which are collected as the object is scanned from multiple angles. These projections can be visualised as sinograms:
-
 This project investigates methods for solving the CT reconstruction problem using both traditional methods, such as filtered backprojection (FBP) and wavelet denoising, and modern deep learning approaches. The project addresses challenges such as limited data, missing segments, and noise, providing a comparative analysis of various methodologies.
 
-
-## Key Features
-
-### Part A: Traditional Reconstruction Methods
+### Traditional Reconstruction Methods
 1. **Radon Transform and Back-Projection**:
    - The Radon transform maps an image into its sinogram representation by integrating along various projection angles.
    - Back-projection is the inverse process, reconstructing the image from the sinogram by redistributing the data along the same projection paths.
@@ -47,7 +44,7 @@ This project investigates methods for solving the CT reconstruction problem usin
    - Soft-thresholding is applied to the wavelet coefficients at each step to reduce noise while retaining essential structural information.
    - The method integrates optimization and regularization, iteratively refining the reconstruction until convergence.
 
-### Part B: Learning-Based Reconstruction
+### Learning-Based Reconstruction
 1. **Learned Post-Processing**:
    - A synthetic dataset was created by generating 5 to 20 overlapping ellipses of varying sizes as the `ftrue` target set. Noisy sinograms are created from the ellipses and are used to create noisy reconstructions using filtered backprojection.
    - A convolutional neural network (ResNet) is trained to correct artifacts and noise in initial reconstructions.
